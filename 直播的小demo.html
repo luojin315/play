@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 200px;
+				height: 100px;
+				border: saddlebrown 1px solid;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1">
+			<p style="width: 100px;height: 20px;background-color: #4BDEFF;">老师</p>
+			<\div>
+				<\ /div>
+		</div>
+		<div id="box2">
+			<p style="width: 100px;height: 20px;background-color: #4BDEFF;">同学1</p>
+		</div>
+		<div id="box3">
+			<p style="width: 100px;height: 20px;background-color: #4BDEFF;">同学2</p>
+		</div>
+		<div id="box4">
+			<p style="width: 100px;height: 20px;background-color: #4BDEFF;">同学3</p>
+		</div>
+		<script src="js/jq.js"></script>
+		<script>
+			// let home = ""; //记录主屏幕是属于那里的学生
+			// function getId(e) {
+			// 	let tag = $(e.target).find("p"); //被点击的学生
+			// 	let id = $(e.target).attr("id"); //被点击学生的id
+			// 	if (id == "box1" && home == "") {//当点主屏幕并且home为空时说明老师已在主屏幕，不再执行以下逻辑
+			// 		return false;
+			// 	}
+			// 	if(id == home){//如果id == home不再切换，需要保持老师的位置
+			// 		return false;
+			// 	}
+			// 	let dom = $("#box1").find("p"); //当前主屏幕下的视频
+			// 	if (id == "box1") { //判断老师切回原位置
+			// 		$("#" + home).append(dom); //先将主屏幕下的学生移回原位置
+			// 		$("#box1").append($("#" + home).find("p")[0]); //将老师移回主屏幕
+			// 		home = ""; //重置记录变量
+			// 		return false;
+			// 	}
+			// 	if (home) { //判断如果切换了位置
+			// 		$("#" + home).append(dom); //先将主屏幕下的学生移回原位置
+			// 		$("#box1").append(tag); //把点击的学生放在主屏幕下
+			// 		$("#" + id).append($("#" + home).find("p")[0]); //因为先执行了主屏幕的学生移回原位置，所以老师的p下标为0，移动到点击学生的盒子下
+			// 		home = id; //记录主屏幕下显示的是谁
+			// 		return false;
+			// 	}
+			// 	home = id; //记录主屏幕中的视频原本应该在那个div下，只需记录div的id
+			// 	$("#box1").append(tag); //将学生放入主屏幕
+			// 	$("#" + id).append(dom); //移动老师的位置到被点击的学生下
+
+			// }
+			// $("div").bind("click", getId);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.fleft {
+				width: 100%;
+				height: 450px;
+				overflow: hidden;
+			}
+
+			.fleft .fleftContent {
+				width: 102%; //此div宽度大于外层div宽度
+				height: 100%;
+				overflow: auto;
+				overflow-x: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		 <div class="fleft">
+		            <div class="fleftContent">
+		            </div>
+		    </div>
+
+		<div id="box">
+			asdasdas
+		</div>
+		<script type="text/javascript">
+			// let a = bar(1000),
+			// 	b = bar(2000)
+			// c = bar(3000);
+			// function bar(wait) {
+			// 	return new Promise((resolve, reject) => {
+			// 		setTimeout(() => {
+			// 			resolve(wait);
+			// 		}, wait)
+			// 	})
+			// }
+			// Promise.all([b, a, c]).then(res => {
+			// 	console.log(res)
+			// })
+
+			// function bar(w, f) {
+			// 	return function() {
+			// 		debugger
+			// 		if (--w == 0) {
+			// 			f();
+			// 		}
+			// 	}
+			// }
+			// let a = bar(3, function() {
+			// 	console.log("Asdas")
+			// });
+			// function test(val) {
+			// 	return function(event) {
+			// 		console.log(event, val);
+			// 	}
+			// }
+			// document.querySelector('#box').addEventListener('click', test('name'))
+			// let foo = 'haha'
+
+			// function foo() {}
+			// console.log(foo)
+		</script>
+	</body>
+</html>

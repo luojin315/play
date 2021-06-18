@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<div>
+		<button id="save">保存</button>
+	</div>
+	<script type="text/javascript">
+		var oCanvas = document.getElementById("canvas");
+		var ctx = oCanvas.getContext("2d");
+		// for (let i = 0; i < arr.length; i++) {
+		// 	draw(arr[i], ctx);
+		// }
+
+		// function draw(item, ctx) {
+		// 	ctx.beginPath();
+		// 	ctx.moveTo(item.locations[0][0], item.locations[0][1]);
+		// 	for (let i = 0; i < item.locations.length; i++) {
+		// 		let x = item.locations[i][0];
+		// 		let y = item.locations[i][1];
+		// 		ctx.lineTo(x, y);
+		// 		console.log(1234567)
+		// 	}
+		// 	ctx.closePath();
+
+		// 	ctx.fillStyle = item.color;
+		// 	ctx.fill();
+
+		// 	ctx.strokeStyle = "#000";
+		// 	ctx.lineWidth = 2;
+		// 	ctx.stroke();
+		// }
+		document.getElementById("save").onclick = function () {
+			downLoad(saveAsPNG(canvas));
+		}
+
+		// 保存成png格式的图片
+		function saveAsPNG(canvas) {
+			console.log(canvas);
+			return canvas.toDataURL("image/png");
+		}
+
+		
+
+		//下载
+		function downLoad(url) {
+			var oA = document.createElement("a");
+			oA.download = ''; //文件下载名
+			oA.href = url;
+			document.body.appendChild(oA);
+			oA.click();
+			oA.remove(); // 下载之后把创建的元素删除
+		}
+
+		function load() {
+			var beauty = new Image();
+			beauty.src = "./img/img.png";
+			if (beauty.complete) {
+				drawBeauty(beauty);
+			} else {
+				beauty.onload = function () {
+					drawBeauty(beauty);
+				};
+				beauty.onerror = function () {
+
+				};
+			};
+		}
+		load();
+		function drawBeauty(beauty) {
+			var mycv = document.getElementById("canvas");
+			var myctx = mycv.getContext("2d");
+			myctx.drawImage(beauty, 0, 0);
+		}
+	</script>
+</body>
+
+</html>

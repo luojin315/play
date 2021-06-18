@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link href="js/tcplayer.css" rel="stylesheet">
+		<!--如果需要在 Chrome 和 Firefox 等现代浏览器中通过 H5 播放 HLS 格式的视频，需要在 tcplayer.v4.1.min.js 之前引入 hls.min.0.13.2m.js。-->
+		<script src="js/hls.min.0.13.2m.js"></script>
+		<!--播放器脚本文件-->
+		<script src="js/tcplayer.v4.1.min.js"></script>
+
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+
+			/* #player-container-id {
+				height: 30vh;
+				width: 30vw;
+			}
+
+			#player-container-id {
+				width: 100%;
+				height: 100%;
+				outline: none;
+			}
+			.vjs-fullscreen-control.vjs-control.vjs-button{
+				
+			}
+			#content{
+				position: relative;
+			}
+			#btn{
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				z-index: 9999;
+			}
+			#quite{
+				display:block;
+				width: 50px;
+				height: 50px;
+				background-color: white;
+				position: absolute;
+				bottom: 0px;
+				right: 0px;
+				z-index: 100;
+			} */
+
+			td {
+				border: 1px solid #0B97C4;
+
+			}
+
+			table {
+				border-spacing: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<label id="a">asdasda<input type="checkbox" name="s" value="" /></label>
+
+		<!-- <button id='btn'>全屏按钮</button>
+		<div id="content" style="width:100vw;height:100vh;">
+			<span id="quite"></span>
+			<video id="player-container-id" preload="auto" playsinline webkit-playsinline>
+			</video>
+		</div> -->
+		<script src="js/jq.js"></script>
+		<script>
+			// $('#a input[name="s"]:checkbox').on('change', function () {
+			// 	console.log('asdasd')
+			// })
+			// $.ajax({
+			// 	type: "POST",
+			// 	url: "https://tapi.juzishu.com.cn/eduCourse/app/course/getOnlineCourseDetail.do",
+			// 	dataType: "json",
+			// 	success: function(data) {
+			// 		console.log(data)
+			// 	},
+			// 	error: function(jqXHR) {
+			// 		console.log("Error: " + jqXHR.status);
+			// 	}
+			// });
+			
+			// 			var player = TCPlayer('player-container-id', { // player-container-id 为播放器容器 ID，必须与 html 中一致
+			// 				fileID: '5285890799710670616', // 请传入需要播放的视频 filID（必须）
+			// 				appID: '1400329073' // 请传入点播账号的 appID（必须）
+			// 			});
+			// 						var btn = document.getElementById('btn');
+			// 			var content = document.getElementById('content');
+			// // 			player.on('fullscreenchange', function(error) {
+			// // 				fullScreen(content);
+			// // });
+			// 			btn.onclick = function() {
+			// 				fullScreen(content);
+			// 			}
+
+			// 			var quite = document.getElementById('quite');
+			// 			quite.onclick = function() {
+			// 				exitFullScreen();
+			// 			}
+
+			// 			function fullScreen(el) { //放大函数
+			// 				var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen,wscript;
+			// console.log(el.webkitRequestFullScreen)
+			// 				if (typeof rfs != "undefined" && rfs) {
+			// 					rfs.call(el);
+			// 					console.log(el)
+			// 					return;
+			// 				}
+
+			// 				if (typeof window.ActiveXObject != "undefined") {
+			// 					wscript = new ActiveXObject("WScript.Shell");
+			// 					if (wscript) {
+			// 						wscript.SendKeys("{F11}");
+			// 					}
+			// 				}
+			// 			}
+
+			// 			function exitFullScreen(el) {//缩小函数
+			// 				var el = document,
+			// 					cfs = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullScreen,
+			// 					wscript;
+
+			// 				if (typeof cfs != "undefined" && cfs) {
+			// 					cfs.call(el);
+			// 					return;
+			// 				}
+
+			// 				if (typeof window.ActiveXObject != "undefined") {
+			// 					wscript = new ActiveXObject("WScript.Shell");
+			// 					if (wscript != null) {
+			// 						wscript.SendKeys("{F11}");
+			// 					}
+			// 				}
+			// 				}
+		</script>
+	</body>
+
+</html>

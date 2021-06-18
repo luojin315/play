@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.我是{
+				width: 100px;
+				height: 100px;
+				background-color: #00A4FF;
+			}
+			td{
+				border: solid 1px saddlebrown;
+			}
+			tr:hover{
+				background-color: #00A4FF;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div class="我是">
+			
+		</div> -->
+		<table>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td rowspan="3">1</td>
+					<td>2</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>3</td>
+				</tr>
+			</tbody>
+		</table>
+		<select onchange="test()">
+			<option>1</option>
+			<option>2</option>
+		</select>
+		<script src="js/jq.js"></script>
+		<script type="text/javascript">
+			function test() {
+				console.log(this)
+				console.log(event.target.value)
+			}
+			let i = 0;
+
+			function bar() {
+				return new Promise(function(resolve, reject) {
+					$.ajax({
+						url: 'http://127.0.0.1:3000/test',
+						type: 'GET',
+						dataType: 'json',
+						success: function(data) {
+							let val = data.data;
+							console.log(val)
+							if (!val.test) {
+								resolve(val);
+							}
+						},
+						error: function(error) {
+
+						}
+					})
+				})
+			}
+
+			function foo() {
+				i++;
+				if (i >= 3) {
+					return;
+				}
+				bar().then(res => {
+					setTimeout(() => {
+						bar().then(res => {
+							setTimeout(() => {
+								bar();
+							}, 2000)
+						})
+					}, 2000)
+				})
+			}
+
+			foo();
+		</script>
+	</body>
+</html>

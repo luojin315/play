@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			localStorage.setItem('flag', false)
+			setTimeout(() => {
+				localStorage.setItem('flag', true);
+				location.reload();
+			}, 2000)
+		</script>
+	</body>
+</html>
