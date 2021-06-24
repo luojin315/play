@@ -1,11 +1,10 @@
-import { useState } from "react"
-
-
+import Container from './view'
+import Checkout from './checkout'
 export default function index() {
     return (
         <div>
-            <Heade />
-            <Button />
+            <Container />
+            <Checkout />
         </div>
     )
 }
@@ -13,17 +12,4 @@ export default function index() {
 
 
 
-function Heade() {
-    return (
-        <div style={{ marginTop: "20px" }}>头部asd</div>
-    )
-}
 
-function Button() {
-
-
-}
-
-function debounce() {
-
-}
