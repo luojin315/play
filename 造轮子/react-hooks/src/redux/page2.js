@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 
 
-
 export default connect(
     // mapStateToProps  映射给state
     state => ({ num: state }),
@@ -22,8 +21,6 @@ export default connect(
                 <h2>{num}</h2>
                 <button onClick={add}>加法</button>
                 <button onClick={minus}>减法</button>
-                <hr />
-
             </div>
         )
     }

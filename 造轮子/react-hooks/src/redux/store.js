@@ -9,8 +9,7 @@ function countReducer(state = 0, action) {
         default: return state;
     }
 }
-
-function count2Reducer(state = 0, action) {
+function countReducer2(state = 0, action) {
     switch (action.type) {
         case "ADD": return state + 1;
 
@@ -23,4 +22,4 @@ function count2Reducer(state = 0, action) {
 
 
 export const countState = createStore(countReducer);
-export const countState2 = createStore(count2Reducer);
+export const countState2 = createStore(countReducer2);
