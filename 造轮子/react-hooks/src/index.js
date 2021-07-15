@@ -1,17 +1,12 @@
 import ReactDOM from 'react-dom';
 import './index.css';
-import Page from './redux'
-import Page2 from './redux/page2'
+import Page from './redux2'
 
-import { Provider } from 'react-redux'
-import { countState, countState2 } from './redux/store'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
-  <Provider store={countState}>
+  <BrowserRouter>
     <Page />
-    <Provider store={countState2}>
-      <Page2 />
-    </Provider>
-  </Provider>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
