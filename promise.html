@@ -64,38 +64,39 @@
 			// function foo() {}
 			// console.log(foo)
 			
-			async function async1() {
-				await async2();
-				console.log("xxxxx")
-			}
+			// async function async1() {
+			// 	await async2();
+			// 	console.log("xxxxx")
+			// }
 			
-			async function async2() {
-				console.log('async2 start')
-			}
+			// async function async2() {
+			// 	console.log('async2 start')
+			// }
 			
-			setTimeout(() => {
-				console.log('setimeout')
-			}, 0)
+			// setTimeout(() => {
+			// 	console.log('setimeout')
+			// }, 0)
 			
-			async1();
+			// async1();
 			
-			new Promise((resolve, reject) => {
-				console.log('promise1')
-				resolve();
-			})
-			.then((res) => {
-				console.log('promise2')
-				new Promise(resolve => {
-					console.log('里面的promise')
-					resolve()
-				})
-				.then(res => {
-					console.log('里面的promise .then')
-				})
-			})
-			.then((res) => {
-				console.log('promise3')
-			})
+			// new Promise((resolve, reject) => {
+			// 	console.log('promise1')
+			// 	resolve();
+			// })
+			// .then((res) => {
+			// 	console.log('promise2')
+			// 	new Promise(resolve => {
+			// 		console.log('里面的promise')
+			// 		resolve()
+			// 	})
+			// 	.then(res => {
+			// 		console.log('里面的promise .then')
+			// 	})
+			// })
+			// .then((res) => {
+			// 	console.log('promise3')
+			// })
+			
 		</script>
 	</body>
 </html>
