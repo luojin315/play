@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+
+        function fun1(arg) {
+            console.log('fun1', arg);
+            return arg;
+        }
+        function fun2(arg) {
+            console.log('fun2', arg);
+            return arg;
+        }
+        function fun3(arg) {
+            console.log('fun3', arg);
+            return arg;
+        }
+        
+        const funs = fun3(fun2(fun1('name')))
+        console.log(funs);
+        console.log('==================================================================')
+
+
+        compose(fun1, fun2, fun3)('name');
+
+        function compose(...funs) {
+            return funs.reduce((a, b) => (...args) => a(b(...args)))
+        }
+
+
+    </script>
+    </body>
+</html>

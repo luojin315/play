@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import './index.css';
-import Page from './redux2'
+import Page from './setStateTest'
 
 import { BrowserRouter } from 'react-router-dom'
 
