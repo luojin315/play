@@ -36,7 +36,6 @@ app.get('*', (req, rep) => {
           <div id="root">${content}</div>
           <script src="/bundle.js"></script>
          </body>
-        
         </html>
     `)
 })
