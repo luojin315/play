@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
+import { Route } from 'react-router-dom'
+import Index from './views'
+import About from './views/about'
 
-function App(props) {
-    const [state, setState] = useState(0)
+export default (
+    <div>
+        <Route path="/" exact component={Index} />
 
-    return (<div>
-        <h1>hello word: {props.title}</h1>
-        <span>{state}</span>
-        <button onClick={() => { setState(state + 1) }}>click me!</button>
-    </div>)
-}
+        <Route path="/about" exact component={About} />
 
-export default App
+    </div>
+)
