@@ -6,7 +6,12 @@ import { getIndexList } from '../store/index'
 function Index(props) {
     const [state, setState] = useState(0)
     useEffect(() => {
-        props.getIndexList()
+        if (!props.list.length) {
+
+            //客户端获取    如果不是直接访问首页 通过路由访问首页list没数据需要重新获取
+            props.getIndexList()
+
+        }
     }, []);
 
     return (<div>
@@ -21,6 +26,10 @@ function Index(props) {
             }
         </ul>
     </div>)
+}
+
+Index.loadData = (store) => {
+    return store.dispatch(getIndexList())
 }
 
 export default connect(

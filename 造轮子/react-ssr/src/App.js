@@ -3,11 +3,28 @@ import { Route } from 'react-router-dom'
 import Index from './views'
 import About from './views/about'
 
-export default (
-    <div>
-        <Route path="/" exact component={Index} />
+// export default (
+//     <div>
+//         <Route path="/" exact component={Index} />
 
-        <Route path="/about" exact component={About} />
+//         <Route path="/about" exact component={About} />
 
-    </div>
-)
+//     </div>
+// )
+
+//改造成js的配置    获取组件
+
+export default [
+    {
+        path: "/",
+        component: Index,
+        exact: true,
+        key: "index",
+    },
+    {
+        path: "/about",
+        component: About,
+        exact: true,
+        key: "about",
+    }
+]
