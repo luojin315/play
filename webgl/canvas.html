@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        canvas {
+            /* width: 100px; */
+            /* height: 100px; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <canvas width="500" height="500"></canvas> -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    </svg>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.0.0/d3.min.js"
+        integrity="sha512-0x7/VCkKLLt4wnkFqI8Cgv6no+AaS1TDgmHLOoU3hy/WVtYta2J6gnOIHhYYDJlDxPqEqAYLPS4gzVex4mGJLw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        const context = canvas.getContext('2d');
+
+
+
+        /**
+         *
+         * ? 城市数据可视化
+         */
+
+         const data = {
+            "name": "中国",
+            "children":
+                [
+                    {
+                        "name": "浙江",
+                        "children":
+                            [
+                                { "name": "杭州" },
+                                { "name": "宁波" },
+                                { "name": "温州" },
+                                { "name": "绍兴" }
+                            ]
+                    },
+                    {
+                        "name": "广西",
+                        "children":
+                            [
+                                { "name": "桂林" },
+                                { "name": "南宁" },
+                            ]
+                    }
+                ]
+
+        }
+        // const TAU = 2 * Math.PI;
+
+        // function draw(ctx, node, { fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white' } = {}) {
+        //     const children = node.children;
+        //     const { x, y, r } = node;
+        //     ctx.fillStyle = fillStyle;
+        //     ctx.beginPath();
+        //     ctx.arc(x, y, r, 0, TAU);
+        //     ctx.fill();
+        //     if (children) {
+        //         for (let i = 0; i < children.length; i++) {
+        //             draw(ctx, children[i]);
+        //         }
+        //     } else {
+        //         const name = node.data.name;
+        //         ctx.fillStyle = textColor;
+        //         ctx.font = '1.5rem Arial';
+        //         ctx.textAlign = 'center';
+        //         ctx.fillText(name, x, y);
+        //     }
+        // }
+
+
+        /**
+         * !svg方式
+        */
+        function draw(parent, node, { fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white' } = {}) {
+            const { x, y, r } = node;
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', r);
+            circle.setAttribute('fill', fillStyle);
+            parent.appendChild(circle);
+        }
+
+        const svgroot = document.querySelector('svg');
+
+        (function () {
+            const regions = d3.hierarchy(data)
+                .sum(d => 1)
+                .sort((a, b) => b.value - a.value);
+
+            const pack = d3.pack()
+                .size([1600, 800])
+                .padding(3);
+            const root = pack(regions);
+
+            // console.log(root)
+            draw(svgroot, root);
+        })()
+
+        //====================================================================================================================
+
+
+        // context.save(); //暂存状态
+        // context.translate(-50, -50);//改变画布
+        // context.beginPath();
+        /**
+        *  !矩形
+        */
+        //const rectSize = [100, 100]
+        // context.rect(0.5 * canvas.width, 0.5 * canvas.height, ...rectSize);
+        // context.rect(0.5 * (canvas.width - rectSize[0]), 0.5 * (canvas.height - rectSize[1]), ...rectSize);//改变顶点坐标
+
+        /**
+         * !三角形
+         */
+        // const height = 200 * Math.sin(Math.PI / 3);//计算等边三角形的高
+        // context.moveTo(100, 0); //从A（100,0）开始
+        // context.lineTo(0, height);
+        // context.lineTo(200, height);
+
+        /**
+         * @param r 小圆半径 R大圆半径
+         * !五角星
+         * ?https://www.cnblogs.com/wufangfang/p/6373972.html
+        */
+        // const rad = [50, 100]
+        // function drawStar(cxt, r, R, x, y, borderWidth = 2, borderStyle = 'black', fillStyle = 'yellow') {
+        //     cxt.beginPath();
+        //     for (var i = 0; i < 5; i++) {
+        //         cxt.lineTo(Math.cos((18 + 72 * i) / 180 * Math.PI) * R + x, - Math.sin((18 + 72 * i) / 180 * Math.PI) * R + y);
+        //         cxt.lineTo(Math.cos((54 + 72 * i) / 180 * Math.PI) * r + x, - Math.sin((54 + 72 * i) / 180 * Math.PI) * r + y);
+        //     }
+        //     cxt.closePath();
+
+        //     cxt.lineWidth = borderWidth;
+        //     cxt.strokeStyle = borderStyle;
+        //     cxt.fillStyle = fillStyle;
+
+        //     cxt.fill();
+        //     cxt.stroke();
+        // }
+        // drawStar(context, rad[0] / 2, rad[1] / 2, 200, 200)
+
+
+        /**
+        * ?实心填充
+        */
+
+        // context.fillStyle = 'yellow';
+        // context.fill();
+
+
+        /**
+        * ?线性填充
+        */
+
+
+        // context.closePath();//闭合路径
+        // context.strokeStyle = 'red';
+        // context.stroke();
+
+
+        // context.restore(); //恢复画布
+        // context.beginPath();
+        // const rectSize2 = [50, 50]
+        // context.rect(0.5 * canvas.width, 0.5 * canvas.height, ...rectSize2);
+        // context.fillStyle = 'yellow';
+        // context.fill();
+    </script>
+</body>
+
+</html>

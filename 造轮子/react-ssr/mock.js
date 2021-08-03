@@ -13,7 +13,7 @@ app.get('/api/user', (req, rep) => {
     rep.json({
         code: 0,
         data: {
-            name: "罗金"
+            name: "世界"
         }
     })
 })

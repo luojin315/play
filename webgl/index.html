@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bargraph {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-image: conic-gradient(#37c 30deg, #3c7 30deg, #3c7 65deg, orange 65deg, orange 110deg, #f73 110deg, #f73 200deg, #ccc 200deg);
+        }
+
+        .bargraph div {
+            margin: 0 2px;
+        }
+
+        .bargraph div:nth-child(1) {
+            background: linear-gradient(to bottom, transparent 75%, #37c 0, #37c 85%, #3c7 0);
+        }
+
+        .bargraph div:nth-child(2) {
+            background: linear-gradient(to bottom, transparent 74%, #37c 0, #37c 89%, #3c7 0);
+        }
+
+        .bargraph div:nth-child(3) {
+            background: linear-gradient(to bottom, transparent 60%, #37c 0, #37c 83%, #3c7 0);
+        }
+
+        .bargraph div:nth-child(4) {
+            background: linear-gradient(to bottom, transparent 55%, #37c 0, #37c 75%, #3c7 0);
+        }
+
+        .bargraph div:nth-child(5) {
+            background: linear-gradient(to bottom, transparent 32%, #37c 0, #37c 63%, #3c7 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bargraph">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="orange" />
+    </svg>
+
+
+    <script>
+
+        function draw(parent, node, { fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white' } = {}) {
+            const { x, y, r } = node;
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', r);
+            circle.setAttribute('fill', fillStyle);
+            parent.appendChild(circle);
+        }
+
+        const svgroot = document.querySelector('svg');
+        
+        draw(svgroot, root);
+
+
+    </script>
+</body>
+
+</html>
