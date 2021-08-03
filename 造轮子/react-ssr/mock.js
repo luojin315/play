@@ -4,6 +4,20 @@ const express = require('express');
 
 const app = express();
 
+app.get('/api/user', (req, rep) => {
+
+    rep.header("Access-Control-Allow-Origin", "*");
+    rep.header("Access-Control-Allow-Methods", "GET,POST");
+    rep.header("Content-type", "application/json;charset=utf-8");
+
+    rep.json({
+        code: 0,
+        data: {
+            name: "罗金"
+        }
+    })
+})
+
 app.get('/api/list', (req, rep) => {
 
     rep.header("Access-Control-Allow-Origin", "*");
