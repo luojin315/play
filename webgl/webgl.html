@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <canvas width="500" height="500"></canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+
+        //创建webgl上下文
+        const gl = canvas.getContext('webgl');
+
+        //创建webgl程序   glsl语法   两个着色器
+        const vertex = `
+  attribute vec2 position;
+
+  void main() {
+    gl_PointSize = 1.0;
+    gl_Position = vec4(position, 1.0, 1.0);
+  }
+`;
+
+        const fragment = `
+  precision mediump float;
+
+  void main()
+  {
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+  }    
+`;
+
+        //顶点着色器
+        const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vertexShader, vertex);
+        gl.compileShader(vertexShader);
+        //片元着色器
+        const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fragmentShader, fragment);
+        gl.compileShader(fragmentShader)
+
+        /**
+         * ?创建 WebGLProgram 对象，并将这两个 shader 关联到这个 WebGL 程序上。
+         * ?WebGLProgram 对象的创建过程主要是添加 vertexShader 和 fragmentShader，然后将这个 WebGLProgram 对象链接到 WebGL 上下文对象上
+        */
+        const program = gl.createProgram();
+
+
+    </script>
+</body>
+
+</html>
