@@ -4,6 +4,7 @@ import Index from './views'
 import About from './views/about'
 import User from './views/Home'
 
+
 // export default (
 //     <div>
 //         <Route path="/" exact component={Index} />

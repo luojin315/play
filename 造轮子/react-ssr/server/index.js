@@ -9,12 +9,17 @@ import Header from '../src/component/Header'
 import { StaticRouter, matchPath, Route } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { getServerStore } from '../src/store/store'
+import { createProxyMiddleware } from 'http-proxy-middleware'
+
 
 const store = getServerStore();
 const app = express();
 app.use(express.static('public'))
 
+//客户端来的api开头的请求   server代理转发 
+app.use('/api', createProxyMiddleware({ target: 'http://localhost:9094', changeOrigin: true }));
 app.get('*', (req, rep) => {
+
 
     //server根据路由渲染的组件和loadData
 
@@ -51,7 +56,7 @@ app.get('*', (req, rep) => {
     //等所有网络请求成功后再渲染
     //另一个解决错误的方法：allSettled方法ES8
     //?https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled
-    Promise.allSettled(promises).then(() => {
+    Promise.all(promises).then(() => {
         //把react组件，解析成html
 
         const content = renderToString(

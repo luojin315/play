@@ -4,6 +4,10 @@ const express = require('express');
 
 const app = express();
 
+
+
+
+
 app.get('/api/user', (req, rep) => {
 
     rep.header("Access-Control-Allow-Origin", "*");
@@ -18,7 +22,7 @@ app.get('/api/user', (req, rep) => {
     })
 })
 
-app.get('/api/lists', (req, rep) => {
+app.get('/api/list', (req, rep) => {
 
     rep.header("Access-Control-Allow-Origin", "*");
     rep.header("Access-Control-Allow-Methods", "GET,POST");
