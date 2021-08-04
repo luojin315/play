@@ -18,7 +18,7 @@ app.get('/api/user', (req, rep) => {
     })
 })
 
-app.get('/api/list', (req, rep) => {
+app.get('/api/lists', (req, rep) => {
 
     rep.header("Access-Control-Allow-Origin", "*");
     rep.header("Access-Control-Allow-Methods", "GET,POST");

@@ -26,11 +26,20 @@ app.get('*', (req, rep) => {
         if (match) {
             const { loadData } = route.component;
             if (loadData) {
+
+                /**
+                 * !这一步可以规避reject导致不渲染并且可以捕捉错误显示
+                 * !直接改promise.all改成finally不会保证数据一定返回
+                 */
+                // const promise = new Promise((resolve, reject) => {
+                //     loadData(store).then(resolve).catch(resolve);
+                // })
+                // promises.push(promise)
                 promises.push(loadData(store))
             }
         }
     })
-    // the first to match
+    // ?官网模板
     // routes.some(route => {
     //     // use `matchPath` here
     //     const match = matchPath(req.path, route);
@@ -40,7 +49,9 @@ app.get('*', (req, rep) => {
     // });
 
     //等所有网络请求成功后再渲染
-    Promise.all(promises).then(() => {
+    //另一个解决错误的方法：allSettled方法ES8
+    //?https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled
+    Promise.allSettled(promises).then(() => {
         //把react组件，解析成html
 
         const content = renderToString(
