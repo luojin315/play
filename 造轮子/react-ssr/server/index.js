@@ -6,7 +6,7 @@ import { renderToString } from 'react-dom/server'
 import express from 'express'
 import routes from '../src/App'
 import Header from '../src/component/Header'
-import { StaticRouter, matchPath, Route } from 'react-router-dom';
+import { StaticRouter, matchPath, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { getServerStore } from '../src/store/store'
 import { createProxyMiddleware } from 'http-proxy-middleware'
@@ -57,19 +57,28 @@ app.get('*', (req, rep) => {
     //另一个解决错误的方法：allSettled方法ES8
     //?https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled
     Promise.all(promises).then(() => {
-        //把react组件，解析成html
 
+        const context = {}
+        //把react组件，解析成html
         const content = renderToString(
             <Provider store={store}>
-                <StaticRouter location={req.url}>
+                <StaticRouter location={req.url} context={context}>
                     <Header />
-                    {
-                        routes.map(route => <Route {...route} />)
-                    }
+                    <Switch>
+                        {
+                            routes.map(route => <Route {...route} />)
+                        }
+                    </Switch>
                 </StaticRouter>
             </Provider>
         )
-
+        console.log(context.action)
+        if (context.statusCode) {
+            rep.status(context.statusCode)
+        }
+        if(context.action == "REPLACE"){
+            rep.redirect(301, context.url)
+        }
         rep.send(`
             <!DOCTYPE html>
             <html lang="en">
