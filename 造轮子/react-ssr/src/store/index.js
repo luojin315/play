@@ -1,5 +1,4 @@
 //首页的逻辑
-import axios from 'axios'
 
 const GET_LIST = 'INDEX/GET_LIST'
 
@@ -10,8 +9,8 @@ const changeList = list => ({
 })
 
 export const getIndexList = server => {
-    return (dispatch, getState, axiosInstance) => {
-        return axios.get('http://localhost:9094/api/list')
+    return (dispatch, getState, $axios) => {
+        return $axios.get('/api/list')
             .then(res => {
                 const { list } = res.data;
                 console.log('list', list)

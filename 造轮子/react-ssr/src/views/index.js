@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getIndexList } from '../store/index'
-
+import '../App.css'
 
 function Index(props) {
     const [state, setState] = useState(0)
@@ -13,7 +13,6 @@ function Index(props) {
 
         }
     }, []);
-
     return (<div>
         <h1>hello word: {props.title}</h1>
         <span>{state}</span>

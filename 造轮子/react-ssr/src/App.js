@@ -3,6 +3,9 @@ import { Route } from 'react-router-dom'
 import Index from './views'
 import About from './views/about'
 import User from './views/Home'
+import NotFound from './views/NotFound'
+import Login from './views/Login'
+
 
 // export default (
 //     <div>
@@ -34,4 +37,14 @@ export default [
         exact: true,
         key: "user",
     },
+    {
+        path: "/login",
+        component: Login,
+        exact: true,
+        key: "login",
+    },
+    {
+        component: NotFound,
+        key: "notFound"
+    }
 ]

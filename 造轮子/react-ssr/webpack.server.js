@@ -21,6 +21,11 @@ module.exports = {
                     presets: ["@babel/preset-react", ["@babel/preset-env"]]
                 }
             },
+            {
+                test: /\.css$/,
+                //server端没有document对象所以需要特别处理isomorphic-style-loader
+                use:['isomorphic-style-loader', 'css-loader']
+            }
         ]
     }
 }

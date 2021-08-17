@@ -17,6 +17,9 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
+    "css-loader": "^6.2.0",
+    "isomorphic-style-loader": "^5.3.0",
+    "style-loader": "^3.2.1",
     "webpack": "^5.47.0",
     "webpack-cli": "^4.7.2",
     "webpack-node-externals": "^3.0.0"
@@ -26,6 +29,7 @@
     "babel-loader": "^8.2.2",
     "concurrently": "^6.2.0",
     "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",

@@ -6,15 +6,20 @@ import { renderToString } from 'react-dom/server'
 import express from 'express'
 import routes from '../src/App'
 import Header from '../src/component/Header'
-import { StaticRouter, matchPath, Route } from 'react-router-dom';
+import { StaticRouter, matchPath, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { getServerStore } from '../src/store/store'
+import { createProxyMiddleware } from 'http-proxy-middleware'
+
 
 const store = getServerStore();
 const app = express();
 app.use(express.static('public'))
 
+//客户端来的api开头的请求   server代理转发 
+app.use('/api', createProxyMiddleware({ target: 'http://localhost:9094', changeOrigin: true }));
 app.get('*', (req, rep) => {
+
 
     //server根据路由渲染的组件和loadData
 
@@ -51,20 +56,29 @@ app.get('*', (req, rep) => {
     //等所有网络请求成功后再渲染
     //另一个解决错误的方法：allSettled方法ES8
     //?https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled
-    Promise.allSettled(promises).then(() => {
-        //把react组件，解析成html
+    Promise.all(promises).then(() => {
 
+        const context = {}
+        //把react组件，解析成html
         const content = renderToString(
             <Provider store={store}>
-                <StaticRouter location={req.url}>
+                <StaticRouter location={req.url} context={context}>
                     <Header />
-                    {
-                        routes.map(route => <Route {...route} />)
-                    }
+                    <Switch>
+                        {
+                            routes.map(route => <Route {...route} />)
+                        }
+                    </Switch>
                 </StaticRouter>
             </Provider>
         )
-
+        console.log(context.action)
+        if (context.statusCode) {
+            rep.status(context.statusCode)
+        }
+        if(context.action == "REPLACE"){
+            rep.redirect(301, context.url)
+        }
         rep.send(`
             <!DOCTYPE html>
             <html lang="en">
