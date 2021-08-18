@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}, 0, 0, 1, 1];
+        var arr = [undefined, undefined, 1, 1]
+
+        // const ary = new Set(arr)
+        // console.log([...ary])
+
+        function unique(ary) {
+            // const temp = [];
+            // for (let i = 0; i < ary.length; i++){
+            //     let val = ary[i];
+            //     if(temp.indexOf(val) < 0){
+            //         temp.push(val);
+            //     }
+            // }
+            // includes也可以
+
+            /**
+            *?对比查找到的第一个元素是否等于当前index
+            */
+            // return ary.filter((item, index) => {
+            //     return ary.indexOf(item) === index;
+            // })
+
+            /**
+            *?将数据类型和数据值转为字符，对比数据类型和数据值
+            *?存成obj的key有值返回false 没值添加
+            */
+            // let obj = {};
+            // return ary.filter((item, index) => {
+            //     return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+            //     // return obj[typeof item + item] ? false : (obj[typeof item + item] = true)
+            // })
+        }
+        // console.log(unique(arr))
+
+        // let a = 1;
+        // function a() {
+
+        // }
+        // console.log(a)
+    </script>
+</body>
+
+</html>
