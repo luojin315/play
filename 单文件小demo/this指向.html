@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button>click me!</button>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+
+
+        // const button = document.querySelector('button');
+
+
+        // button.onclick = function foo() {
+        //     console.log(this,arguments)
+        // }
+        // let obj = {
+        //     name: "张三",
+        //     fun: function () {
+        //         console.log(this);
+        //     }
+        // }
+
+        // setTimeout(obj.fun, 1000)
+        // setTimeout('obj.fun()', 1000)
+
+
+        // let Foo = function () {
+        //     this.name = 'zhangsan'
+        // }
+        // const newfoo = new Foo();
+        // let name = 'window';
+        // Function.prototype.myCall = function (context, ...arg) {
+        //     let thisContext = Symbol('当前this');
+        //     context[thisContext] = this;
+
+        //     let result = context[thisContext](...arg); // 通过隐式绑定执行函数并传递参数
+        //     delete context[thisContext]; // 删除上下文对象的属性
+        //     return result; // 返回函数执行结果
+        // }
+
+        // function bar() {
+        //     console.log(this)
+        //     console.log(this.name)
+        // }
+
+
+        // bar.myCall(newfoo)
+
+        // Function.prototype.myBind = function (context, ...args) {
+        //     let funThis = this
+
+        //     let funToBind = function (...newFunArgs) {
+        //         console.log(this instanceof funToBind)
+
+        //         if(this instanceof funToBind){
+        //            return new funThis(...args, ...newFunArgs) 
+        //         }
+
+
+        //         return funThis.call(context, ...args, ...newFunArgs)
+        //     }
+
+        //     return funToBind
+        // }
+
+
+        // Function.prototype.myApply = function () {
+
+        // }
+
+        Array.prototype.myMap = function (func) {
+
+            for (let i = 0; i < this.length; i++) {
+                func(this[i], i)
+            }
+            
+        };
+
+
+        [1, 2, 3].myMap((item, index) => {
+            console.log(item, index)
+        })
+
+
+        function Car(obj) {
+            this.name = obj.name
+        }
+
+        const newCar = new Car({ name: "lisi" });
+        console.log(newCar.name)
+
+
+        function myNew()
+        // let obj = {
+        //     name: "zhangsan",
+        //     fun: function () {
+        //         console.log(this.name)
+        //     }
+        // }
+        // let a = obj.fun.myBind(obj);
+
+
+        // const liList = document.querySelectorAll('li');
+        // console.log(liList)
+        // Array.prototype.map.call(liList, item => {
+        //     console.log(item)
+        // })
+
+
+
+        // (() => {
+        //     console.log(this)
+        // })()
+        //     ;
+        // function bar() {
+        //     (function (a, b) {
+        //         console.log(this, arguments)
+        //     })(1, 2)
+        // }
+        // bar()
+        // var age = 10;
+        // var person = {
+        //     age: 20,
+        //     getAge() {
+        //         var age = 30;
+        //         return this.age;
+        //     },
+        // };
+        // alert(age, age * 2);
+
+        // person.getAge();
+
+        // var b = person.getAge;
+        // b();
+
+        // (person.getAge)();
+
+        // (1, person.getAge)();
+
+        // (1, person.getAge.bind(person))();
+
+        // (person.getAge, person.getAge)();
+
+        // (person.getAge = person.getAge)();
+
+        // person.getAge.call();
+
+        // person.getAge.call(person);
+
+        // function getAge2() {
+        //     this.age = 40;
+        //     console.log(person.getAge());
+        // };
+        // getAge2();
+        // console.log(age);
+
+        // function getAge3() {
+        //     this.age = 50;
+        //     this.getAge4 = () => {
+        //         console.log(person.getAge.call(this));
+        //     }
+        // }
+        // new getAge3().getAge4();
+        // console.log(age);
+
+        // function getAge4() {
+        //     this.age = 60;
+        //     this.getAge5 = () => {
+        //         console.log(person.getAge.call(this));
+        //     }
+        // }
+        // new getAge4().getAge5();
+        // console.log(age);
+
+        // var age2 = 10;
+        // var person2 = {
+        //     age2: 20,
+        //     getAge2: () => {
+        //         var age2 = 30;
+        //         return this.age2;
+        //     },
+        // };
+        // console.log(person2.getAge2.call());
+        // console.log(person2.getAge2.call(person2));
+
+
+
+
+        // var age = 10;
+        // var person = {
+        //     age: 20,
+        //     child: {
+        //         age: 40,
+        //         getAge: function () {
+        //             return this.age;
+        //         },
+        //     },
+        //     child2: {
+        //         age: 40,
+        //         getAge: () => {
+        //             return this.age;
+        //         },
+        //     },
+        //     child3: function () {
+        //         this.getAge = () => {
+        //             return this.age;
+        //         }
+        //     }
+        // };
+        // console.log(person.child.getAge());// 40
+        // console.log(person.child2.getAge()); //10
+        // console.log((new person.child3()).getAge());//undefined
+
+
+
+    </script>
+</body>
+
+</html>
