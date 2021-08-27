@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const ary = [1, 2, -4, 5, 2];
+        //最大子序和
+        //思维方式
+        let testAry1 = [50, -100, 80]//最大子序和80 因为被-100截断
+        let testAry2 = [50, -49, 80]//最大子序和81 
+        let testAry3 = [50, -50, 80]//最大子序和80 
+        //可得出一个数组中从0到N相加 如果下一个子元素的绝对值>0到n相加的值 就开始从下一个开始重新计算
+        //例如[1,2,-4,5,2]从0开始相加 1+2 =3 ，3 -4 = -1，这时候就可以忽略前面的计算 从5开始，因为只要和加起来不是>=0 是负数的话   都会使后面的元素和减少， 所以这个最大子序和是7
+
+        //假设数组中前半段都是负数，那应该是从负数结束开始计算，因为计算负数是无意义的
+
+        //首先想到元素最大和需要变量保存 maxSum
+        //还需要记录上一个和当前值相加的结果 初始是0
+
+        function bar(nums) {
+
+
+            let sum = 0, max = nums[0];
+            nums.forEach(num => {
+                sum = Math.max(sum + num, num);
+                max = Math.max(sum, num)
+            })
+
+            console.log(max)
+
+
+
+
+
+
+        }
+
+        bar(ary)
+
+
+
+
+
+
+
+
+        // function bar(nums) {
+        //     let a = 0, b = nums[0];
+
+        //     nums.forEach(item => {
+        //         console.log(item, a, b)
+
+        //         a = Math.max(a + item, item);
+        //         b = Math.max(b, a);
+        //         console.log(item, a, b)
+        //         console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        //     });
+        //     let sum = 0, maxSum = nums[0];
+
+        //     nums.forEach(num => {
+        //         if(sum > 0){
+        //             sum = sum + num;
+        //         }else{
+        //             sum = num;
+        //         }
+
+        //         maxSum = Math.max(maxSum, sum);
+        //     });
+
+        //     console.log(maxSum)
+
+        // }
+
+        // bar(ary)
+    </script>
+</body>
+
+</html>

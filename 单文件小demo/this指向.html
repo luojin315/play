@@ -19,12 +19,27 @@
     <script>
 
 
-        // const button = document.querySelector('button');
+        const liList = document.querySelectorAll('li');
+        liList.forEach(item => {
+            console.log(item)
+        })
+
+        console.log(liList)
 
 
-        // button.onclick = function foo() {
-        //     console.log(this,arguments)
+        // document.querySelector('button').onclick = function foo() {
+        //     console.log(this, arguments)
         // }
+
+
+         function Bar(obj) {
+             this.name = obj.name
+         }
+
+         const b = new Bar({name: "lisi"})
+
+        console.log(b.__proto__.__proto__)
+         
         // let obj = {
         //     name: "张三",
         //     fun: function () {
@@ -32,10 +47,12 @@
         //     }
         // }
 
-        // setTimeout(obj.fun, 1000)
+        // setTimeout(obj.fun.bind(obj), 1000)
         // setTimeout('obj.fun()', 1000)
 
-
+        /**
+        *?call实现
+        */
         // let Foo = function () {
         //     this.name = 'zhangsan'
         // }
@@ -57,7 +74,9 @@
 
 
         // bar.myCall(newfoo)
-
+        /**
+        *?bind实现
+        */
         // Function.prototype.myBind = function (context, ...args) {
         //     let funThis = this
 
@@ -75,34 +94,37 @@
         //     return funToBind
         // }
 
+        /**
+        *?map实现
+        */
 
         // Function.prototype.myApply = function () {
 
         // }
 
-        Array.prototype.myMap = function (func) {
+        // Array.prototype.myMap = function (func) {
 
-            for (let i = 0; i < this.length; i++) {
-                func(this[i], i)
-            }
-            
-        };
+        //     for (let i = 0; i < this.length; i++) {
+        //         func(this[i], i)
+        //     }
 
-
-        [1, 2, 3].myMap((item, index) => {
-            console.log(item, index)
-        })
+        // };
 
 
-        function Car(obj) {
-            this.name = obj.name
-        }
-
-        const newCar = new Car({ name: "lisi" });
-        console.log(newCar.name)
+        // [1, 2, 3].myMap((item, index) => {
+        //     console.log(item, index)
+        // })
 
 
-        function myNew()
+        // function Car(obj) {
+        //     this.name = obj.name
+        // }
+
+        // const newCar = new Car({ name: "lisi" });
+        // console.log(newCar.name)
+
+
+        // function myNew()
         // let obj = {
         //     name: "zhangsan",
         //     fun: function () {
