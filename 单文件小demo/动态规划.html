@@ -7,9 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<h1>asdasdasdasdasdasdsa</h1>
 
 <body>
     <script>
+        const getSelectedText = () => window.getSelection().toString()
+
+        document.write('b<<!---->a<<!---->v')
+        console.log(
+            'b<<!---->a<<!---->v'.replace(
+                /((&lt;)|(&#x3C;)|(&#60;))(!|\/|\?|[a-zA-Z])/gi
+                //https://mp.weixin.qq.com/s/SmMm-peosuQnXwCSwnM7GQ
+            ))
+
+
         const ary = [1, 2, -4, 5, 2];
         //最大子序和
         //思维方式
@@ -26,19 +37,12 @@
 
         function bar(nums) {
 
-
             let sum = 0, max = nums[0];
             nums.forEach(num => {
                 sum = Math.max(sum + num, num);
-                max = Math.max(sum, num)
+                max = Math.max(sum, num);
             })
-
-            console.log(max)
-
-
-
-
-
+            console.log(max);
 
         }
 
