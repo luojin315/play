@@ -1,37 +1,23 @@
 import React, {
   useState,
   useEffect,
-  useMemo,
-  memo,
-  PureComponent,
 } from "react";
-
-const MemodFuncComponent = memo(Title);
+import Usecallback from './usecallback'
 
 export default function Index() {
-  const [state, setState] = useState(0);
-  const [obj, setobj] = useState({ name: "zhangsan" });
 
   //   const memoizedValue = useMemo(() => new Date().getFullYear(), [state]);
   return (
     <div>
-      usenum: {useNum().num}
-      <hr />
-      state: {state}
-      <MemodFuncComponent value={state} obj={obj} />
-      <button
-        onClick={() => {
-          setState(state + 1);
-        }}
-      >
-        click me!
-      </button>
+      {/* usenum: {useNum().num} */}
+      <Usecallback />
     </div>
   );
 }
 
 function useNum() {
   const [state, setState] = useState({ num: 0 });
+  console.log("asdsad")
   useEffect(() => {
     let timer = setInterval(() => {
       setState({ num: state.num + 1 });
@@ -41,13 +27,4 @@ function useNum() {
     };
   }, [state]);
   return state;
-}
-
-function Title({ obj, value }) {
-  console.log("asdasd");
-  return (
-    <h1>
-      {obj.name}title {value}
-    </h1>
-  );
 }
