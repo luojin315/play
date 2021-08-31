@@ -2,7 +2,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import Usecallback from './usecallback'
+import Usememo from './timer'
 
 export default function Index() {
 
@@ -10,7 +10,7 @@ export default function Index() {
   return (
     <div>
       {/* usenum: {useNum().num} */}
-      <Usecallback />
+      <Usememo />
     </div>
   );
 }
