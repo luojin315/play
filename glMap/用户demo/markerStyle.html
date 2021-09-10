@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="addEvent">添加marker点击事件</button>
+    <button id="test">添加marker点击事件</button>
+    <div id="container">
+
+    </div>
+    <script
+        src="https://map.qq.com/api/gljs?v=1.exp&key=T66BZ-HCDEV-PDMPP-UIB4K-5Q43T-KKFUD&libraries=geometry"></script>
+    <script>
+        var map = new TMap.Map("container", {
+            rotation: 20,//设置地图旋转角度
+            pitch: 30, //设置俯仰角度（0~45）
+            zoom: 17,//设置地图缩放级别
+            center: new TMap.LatLng(39.984104, 116.307503),//设置地图中心点坐标
+            baseMap: [
+                { type: 'vector' }, //设置矢量底图
+            ],
+
+        });
+        var path = [
+            new TMap.LatLng(39.98481500648338, 116.30571126937866),
+            new TMap.LatLng(39.982266575222155, 116.30596876144409),
+            new TMap.LatLng(39.982348784165886, 116.3111400604248),
+            new TMap.LatLng(39.978813710266024, 116.3111400604248),
+            new TMap.LatLng(39.978813710266024, 116.31699800491333)
+        ];
+
+        var polylineLayer = new TMap.MultiPolyline({
+            map, // 绘制到目标地图
+            // 折线样式定义
+            styles: {
+                'style_blue': new TMap.PolylineStyle({
+                    'color': '#3777FF', //线填充色
+                    'width': 4, //折线宽度
+                    'borderWidth': 2, //边线宽度
+                    'borderColor': '#FFF', //边线颜色
+                    'lineCap': 'round' //线端头方式
+                })
+            },
+            geometries: [{
+                styleId: 'style_blue',
+                paths: path
+            }],
+        });
+        var marker = new TMap.MultiMarker({
+            map,
+            styles: {
+                'car-down': new TMap.MarkerStyle({
+                    'width': 40,
+                    'height': 40,
+                    'anchor': {
+                        x: 20,
+                        y: 20,
+                    },
+                    'faceTo': 'map',
+                    'rotate': 180,
+                    'src': 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/car.png',
+                }),
+                "start": new TMap.MarkerStyle({
+                    "width": 25,
+                    "height": 35,
+                    "anchor": { x: 16, y: 32 },
+                    "src": 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/start.png'
+                }),
+                "end": new TMap.MarkerStyle({
+                    "width": 25,
+                    "height": 35,
+                    "anchor": { x: 16, y: 32 },
+                    "src": 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/end.png'
+                })
+            },
+            geometries: [{
+                id: 'car',
+                styleId: 'car-down',
+                position: new TMap.LatLng(39.98481500648338, 116.30571126937866),
+            }, {
+                "id": 'start',
+                "styleId": 'start',
+                "position": new TMap.LatLng(39.98481500648338, 116.30571126937866)
+            }, {
+                "id": 'end',
+                "styleId": 'end',
+                "position": new TMap.LatLng(39.978813710266024, 116.31699800491333)
+            }]
+        });
+        function addMarker(markerId, angle, lat, lon) {
+            console.log(angle);
+            //更换marker样式方法
+            marker.setStyles({
+                "car-down2": new TMap.MarkerStyle({
+                    'width': 40, // 点标记样式宽度（像素）
+                    'height': 40,
+                    'anchor': { //图片中心的像素位置（小车会保持车头朝前，会以中心位置进行转向）
+                        x: 20,
+                        y: 20,
+                    },
+                    'faceTo': 'map', //取’map’让小车贴于地面，faceTo取值说明请见下文图示
+                    'rotate': angle, //初始小车朝向（正北0度，逆时针一周为360度，180为正南）
+                }),
+                'car-down': new TMap.MarkerStyle({
+                    'width': 40,
+                    'height': 40,
+                    'anchor': {
+                        x: 20,
+                        y: 20,
+                    },
+                    'faceTo': 'map',
+                    'rotate': 180,
+                    'src': 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/car.png',
+                }),
+                "start": new TMap.MarkerStyle({
+                    "width": 25,
+                    "height": 35,
+                    "anchor": { x: 16, y: 32 },
+                    "src": 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/start.png'
+                }),
+                "end": new TMap.MarkerStyle({
+                    "width": 25,
+                    "height": 35,
+                    "anchor": { x: 16, y: 32 },
+                    "src": 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/end.png'
+                })
+            })
+            marker.add({
+                id: markerId, //点标记唯一标识，后续如果有删除、修改位置等操作，都需要此id
+                styleId: 'car-down2', //绑定样式
+                position: new TMap.LatLng(lat, lon)
+            });
+
+        }
+        addMarker(3, 180, 39.977813710266024, 116.31799800491333);
+        addMarker(4, 60, 39.977813710266024, 116.31799800491333);
+        addMarker(5, 120, 39.977813710266024, 116.31799800491333);
+        addMarker(6, 90, 39.977813710266024, 116.31799800491333);
+        // marker.moveAlong({
+        //     'car': {
+        //         path,
+        //         speed: 250
+        //     }
+        // }, {
+        //     autoRotation: true
+        // })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

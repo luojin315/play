@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>加载中...</h1>
+    <button onclick="moveTo()">平滑过渡至点</button>
+    <button onclick="setBoundary()">设置可视区域</button>
+    <button onclick="changeZoom(2)">设置缩放比例2</button>
+    <div id="container">
+
+    </div>
+    <script src="https://map.qq.com/api/gljs?v=1.exp&key=T66BZ-HCDEV-PDMPP-UIB4K-5Q43T-KKFUD"></script>
+
+
+    <script>
+        /**
+         * ?同步加载不会自动调用initMap方法
+        */
+        // function initMap(){
+        //     console.log("test")
+        // }
+        var map = new TMap.Map("container", {
+            rotation: 20,//设置地图旋转角度
+            pitch: 30, //设置俯仰角度（0~45）
+            zoom: 17,//设置地图缩放级别
+            center: new TMap.LatLng(39.984104, 116.307503),//设置地图中心点坐标
+            baseMap: [
+                { type: 'vector' }, //设置矢量底图
+                { type: 'traffic' } //设置路况底图
+            ],
+
+        });
+        //监听地图开始平移
+        map.on("panstart", function () {
+            changeH1Text("地图开始平移");
+        })
+        //监听地图平移
+        map.on("pan", function () {
+            changeH1Text("地图正在平移");
+        })
+        //监听地图平移结束
+        map.on("panend", function () {
+            changeH1Text("地图结束平移");
+        })
+
+        map.on('tilesloaded', () => {
+            changeH1Text("地图加载完毕");
+        })
+
+        function changeH1Text(val) {
+            document.querySelector('h1').innerText = val;
+        }
+
+        function moveTo() {
+            map.easeTo({ zoom: 17, rotation: 90, center: new TMap.LatLng(39.984104, 116.317503) }, { duration: 2000 });//平滑缩放,旋转到指定级别
+        }
+
+        function setBoundary() {
+            let sw = new TMap.LatLng(39.744154, 116.124115);
+            let ne = new TMap.LatLng(40.104336, 116.691284);
+            let boundary = new TMap.LatLngBounds(sw, ne);
+            map.setBoundary(boundary);
+        }
+        //是缩放地图比例   不是地图的放大缩小
+        function changeZoom(val) {
+            map.setScale(val);
+        }
+
+        //     map.on('click', function (evt) {
+        //         const { lat, lng } = evt.latLng
+        //         let latNum = lat.toFixed(6);
+        //         let lngNum = lng.toFixed(6);
+
+        //         console.log(latNum, lngNum)
+        //     })
+
+        let info = new TMap.InfoWindow({
+            map,
+            position: map.getCenter()
+        }).close();
+        map.on('click', (evt) => {
+            // 获取click事件返回的poi信息
+            let poi = evt.poi;
+            if (poi) {
+                // 拾取到POI
+                info.setContent(poi.name).setPosition(poi.latLng).open();
+            } else {
+                // 没有拾取到POI
+                info.close();
+            }
+        });
+
+
+        // map.on('click', (evt) => {
+        //     const { lat, lng } = evt.latLng
+        //     map.setCenter(new TMap.LatLng(lat, lng));
+        // })
+        /**
+         * ?异步加载地图会自动调用initMap命名的方法
+        */
+        // function loadScript() {
+        //     //创建script标签，并设置src属性添加到body中
+        //     var script = document.createElement("script");
+        //     script.type = "text/javascript";
+        //     script.src = "https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&callback=initMap";
+        //     document.body.appendChild(script);
+        // }
+
+        // window.onload = loadScript
+        // //加载
+        // function initMap() {
+        //     console.log("Asdasd")
+        //     var map = new TMap.Map("container", {
+        //         pitch: 45,
+        //         zoom: 12,
+        //         center: new TMap.LatLng(39.984104, 116.307503)
+        //     });
+        // }
+    </script>
+</body>
+
+</html>

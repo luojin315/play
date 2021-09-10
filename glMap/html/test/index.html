@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 100%;
+            height: 60vh;
+        }
+    </style>
+</head>
+
+<body>
+    <p>请输入起点： <input type="text" id="start" /></p>
+    <p>请输入终点： <input type="text" id="end" /></p>
+    <button onclick="searchByKeyword()">确定</button>
+    <div id="container"></div>
+    <script charset="utf-8"
+        src="https://map.qq.com/api/gljs?v=1.exp&libraries=service&key=T66BZ-HCDEV-PDMPP-UIB4K-5Q43T-KKFUD"></script>
+    <script>
+        var map = new TMap.Map('container', {
+            zoom: 14,
+            center: new TMap.LatLng(40.0402718, 116.2735831),
+        });
+        var geocoder = new TMap.service.Geocoder(); // 新建一个正逆地址解析类
+        function searchByKeyword() {
+            const startValue = document.querySelector('#start').value;
+            geocoder
+                .getLocation({ address: startValue })
+                .then((result) => {
+                    console.log(result)
+                    // markers.updateGeometries([
+                    //     {
+                    //         id: 'main',
+                    //         position: result.result.location, // 将得到的坐标位置用点标记标注在地图上
+                    //     },
+                    // ]); 
+                    // map.setCenter(result.result.location);
+                    // document.getElementById(
+                    //     'location'
+                    // ).value = result.result.location.toString();
+                    // 显示坐标数值
+                });
+        }
+    </script>
+</body>
+
+</html>
